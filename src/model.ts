@@ -12,23 +12,17 @@ export const model = createOpenAI({
   compatibility: 'strict',
 });
 
-export async function callModelText() {
-  // create the Langfuse client (for manual tracing)
-  // const trace = langfuse.trace({
-  //   name: 'test-app-session',
-  //   userId: 'user__935d7d1d-8625-4ef4-8651-544613e7bd22',
-  //   metadata: { user: 'm@jupi.com' },
-  //   tags: ['test', 'manual'],
-  // });
+export async function callModelText(question?: string, traceName?: string, tags?: string[], userId?: string) {
 
   const { text } = await generateText({
-    model: model('gpt-4-turbo'),
-    prompt: 'What is love? Tell me only in one phrase.',
+    model: model('gpt-4o-mini'),
+    prompt: question || 'Who is Jupiter? Tell me only in one phrase.',
     experimental_telemetry: {
       isEnabled: true,
-      functionId: 'trace-text',
+      functionId: traceName,
       metadata: {
-        tags: ['generation', 'text'],
+        tags: tags,
+        userId: userId,
       },
     },
   });
@@ -38,23 +32,17 @@ export async function callModelText() {
   return text;
 }
 
-export async function callModelStream() {
-  // create the Langfuse client (for manual tracing)
-  // const trace = langfuse.trace({
-  //   name: 'test-app-session',
-  //   userId: 'user__935d7d1d-8625-4ef4-8651-544613e7bd22',
-  //   metadata: { user: 'm@jupi.com' },
-  //   tags: ['test', 'manual'],
-  // });
+export async function callModelStream(question?: string, traceName?: string, tags?: string[], userId?: string) {
 
   const { text, textStream } = await streamText({
-    model: model('gpt-4-turbo'),
-    prompt: 'What is love? Tell me only in one phrase.',
+    model: model('gpt-4o-mini'),
+    prompt: question || 'Who is Jupiter? Tell me only in one phrase.',
     experimental_telemetry: {
       isEnabled: true,
-      functionId: 'trace-stream',
+      functionId: traceName,
       metadata: {
-        tags: ['generation', 'stream'],
+        tags: tags,
+        userId: userId,
       },
     },
   });

@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /bin/sh
 
 # Setup pnpm with zsh
 pnpm setup
