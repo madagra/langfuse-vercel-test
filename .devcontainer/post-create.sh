@@ -1,11 +1,11 @@
-#! /bin/sh
+#! /bin/zsh
 
 # Setup pnpm with zsh
-pnpm setup
-source /home/vscode/.zshrc
+SHELL=zsh pnpm setup
+source /home/node/.zshrc
 
 # Install dependencies
-pnpm config set store-dir /home/vscode/.local/share/pnpm/store
+pnpm config set store-dir /home/node/.local/share/pnpm/store
 pnpm install
 pnpm run build
 

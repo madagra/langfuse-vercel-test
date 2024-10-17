@@ -1,15 +1,4 @@
-import { Langfuse } from 'langfuse';
-
-const LANGFUSE_SECRET_KEY = 'sk-lf-68cbd79d-b4d4-46f5-9e05-9dcdd6507c35';
-const LANGFUSE_PUBLIC_KEY = 'pk-lf-739e1cf8-7537-45c9-94d0-d25e905a8623';
-const LANGFUSE_HOST = 'https://cloud.langfuse.com';
-
-// create the Langfuse client to query traces
-export const lfClient = new Langfuse({
-  secretKey: LANGFUSE_SECRET_KEY,
-  publicKey: LANGFUSE_PUBLIC_KEY,
-  baseUrl: LANGFUSE_HOST,
-});
+import { lfClient } from './langfuse';
 
 export async function runCustomEvaluation() {
   // time-range

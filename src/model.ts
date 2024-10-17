@@ -12,8 +12,14 @@ export const model = createOpenAI({
   compatibility: 'strict',
 });
 
-export async function callModelText(question?: string, traceName?: string, tags?: string[], userId?: string) {
-
+export async function callModelText(
+  question?: string,
+  traceName?: string,
+  tags?: string[],
+  userId?: string,
+  sessionId?: string,
+  traceId?: string,
+) {
   const { text } = await generateText({
     model: model('gpt-4o-mini'),
     prompt: question || 'Who is Jupiter? Tell me only in one phrase.',
@@ -23,6 +29,8 @@ export async function callModelText(question?: string, traceName?: string, tags?
       metadata: {
         tags: tags,
         userId: userId,
+        sessionId: sessionId,
+        langfuseTraceId: traceId,
       },
     },
   });
@@ -32,8 +40,14 @@ export async function callModelText(question?: string, traceName?: string, tags?
   return text;
 }
 
-export async function callModelStream(question?: string, traceName?: string, tags?: string[], userId?: string) {
-
+export async function callModelStream(
+  question?: string,
+  traceName?: string,
+  tags?: string[],
+  userId?: string,
+  sessionId?: string,
+  traceId?: string,
+) {
   const { text, textStream } = await streamText({
     model: model('gpt-4o-mini'),
     prompt: question || 'Who is Jupiter? Tell me only in one phrase.',
@@ -43,6 +57,8 @@ export async function callModelStream(question?: string, traceName?: string, tag
       metadata: {
         tags: tags,
         userId: userId,
+        sessionId: sessionId,
+        langfuseTraceId: traceId,
       },
     },
   });

@@ -2,7 +2,7 @@ import { sdk } from './exporter';
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { runCustomEvaluation } from './customEvaluation';
+import { runCustomEvaluation } from './evaluation';
 
 async function bootstrap() {
   // try out
